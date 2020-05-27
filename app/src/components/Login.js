@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import styled, {css} from 'styled-components';
+import axios from 'axios';
 import '../App.css';
 
 const inputStyle = css`
@@ -84,7 +85,7 @@ export default function Login() {
                         />
                         {errors.password && <p>Password is required</p>}
                     <div className="button-container">
-                    <StyledButton type="submit">Submit</StyledButton>
+                    <StyledButton type="submit">Login</StyledButton>
                     </div>
                 </StyledForm>
                 </StyledFormWrapper>
