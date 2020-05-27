@@ -57,7 +57,7 @@ export default function Login() {
 
     const {register, handleSubmit, errors, reset} = useForm();
 
-    const [loginError, setLoginError] = useState(' ');
+    const [loginError, setLoginError] = useState('');
 
     const onSubmit = (data, e) => {
         login(data);
@@ -73,15 +73,15 @@ export default function Login() {
         */
 
         axiosWithAuth().post('https://reqres.in/api/login', event)
-        .then(res => {
-            console.log(`Success!`)
-            localStorage.setItem('token', JSON.stringify(res.data.token));
-            console.log(localStorage.token)
-        })
-        .catch(err =>    {
-            console.log(err);
-            setLoginError('Please check your username and password');
-        })
+            .then(res => {
+                console.log(`Success!`)
+                localStorage.setItem('token', JSON.stringify(res.data.token));
+                console.log(localStorage.token)
+            })
+            .catch(err =>    {
+                console.log(err);
+                setLoginError('Please check your username and password');
+            })
     }
 
     return (

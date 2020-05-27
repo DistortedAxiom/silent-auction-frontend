@@ -20,7 +20,7 @@ export default function SellerForm() {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 8vh;
+    margin-top: 4vh;
     `;
 
     const StyledForm = styled.form`
