@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import styled, {css} from 'styled-components';
-import axios from 'axios';
+import {axiosWithAuth} from '../utils/axiosWithAuth';
 import '../App.css';
 
 const inputStyle = css`
@@ -59,6 +59,26 @@ export default function Login() {
 
     const onSubmit = data => {
         console.log(data);
+
+        login(data)
+    }
+
+    const login = event => {
+
+        /*
+            TEST AUTHENTICATION LOGIN
+               "email": "eve.holt@reqres.in",
+               "password": "cityslicka"
+        */
+
+        axiosWithAuth().post('https://reqres.in/api/login', event)
+        .then(res => {
+            console.log(`Success!`)
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }
 
     return (
@@ -100,5 +120,4 @@ export default function Login() {
             </div>
         </div>
     )
-
 }
