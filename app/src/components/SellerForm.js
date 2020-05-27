@@ -69,7 +69,7 @@ export default function SellerForm() {
 
     return (
         <div>
-            <h1>Silent Auction</h1>
+            <h1>Auctionable</h1>
             <h2>Create a listing</h2>
             <div>
                 <StyledFormWrapper>

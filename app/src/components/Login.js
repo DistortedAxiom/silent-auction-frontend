@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import styled, {css} from 'styled-components';
@@ -19,7 +19,7 @@ const StyledFormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 8vh;
+  margin-top: 4vh;
 `;
 
 const StyledForm = styled.form`
@@ -55,12 +55,13 @@ const StyledButton = styled.button`
 
 export default function Login() {
 
-    const {register, handleSubmit, errors} = useForm();
+    const {register, handleSubmit, errors, reset} = useForm();
 
-    const onSubmit = data => {
-        console.log(data);
+    const [loginError, setLoginError] = useState(' ');
 
-        login(data)
+    const onSubmit = (data, e) => {
+        login(data);
+        e.target.reset();
     }
 
     const login = event => {
@@ -74,17 +75,20 @@ export default function Login() {
         axiosWithAuth().post('https://reqres.in/api/login', event)
         .then(res => {
             console.log(`Success!`)
-            console.log(res);
+            localStorage.setItem('token', JSON.stringify(res.data.token));
+            console.log(localStorage.token)
         })
         .catch(err => {
             console.log(err);
+            setLoginError('Please check your username and password');
         })
     }
 
     return (
         <div>
-            <h1>Welcome to Silent Auction</h1>
+            <h1>Welcome to Auctionable</h1>
             <h2>Login</h2>
+            {loginError.length > 0 ? <p className="login-error">{loginError}</p> : null}
             <div>
                 <StyledFormWrapper>
                 <StyledForm onSubmit={handleSubmit(onSubmit)}>

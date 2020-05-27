@@ -21,7 +21,7 @@ export default function SignUp() {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 8vh;
+    margin-top: 4vh;
     `;
 
     const StyledForm = styled.form`
@@ -82,7 +82,7 @@ export default function SignUp() {
 
     return (
         <div>
-            <h1>Welcome to Silent Auction</h1>
+            <h1>Welcome to Auctionable</h1>
             <h2>Register with us!</h2>
             <div>
                 <StyledFormWrapper>
