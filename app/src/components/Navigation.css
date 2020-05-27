@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Marck+Script&display=swap");
+
 .nav-bar {
     width: 100%;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid black;
 }
 
 .home-link-container {
@@ -11,12 +15,14 @@
 
 .home-link {
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 2.8rem;
     color: black;
+    font-family: 'Marck Script', cursive;
 }
 
 .nav-item {
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 2.2rem;
+    font-family: 'Marck Script', cursive;
     color:black;
 }

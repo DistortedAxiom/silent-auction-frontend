@@ -78,7 +78,7 @@ export default function Login() {
             localStorage.setItem('token', JSON.stringify(res.data.token));
             console.log(localStorage.token)
         })
-        .catch(err => {
+        .catch(err =>    {
             console.log(err);
             setLoginError('Please check your username and password');
         })

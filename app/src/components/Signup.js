@@ -77,7 +77,8 @@ export default function SignUp() {
             password: event.password
         }
 
-        registerUser(newUser)
+        registerUser(newUser);
+
     }
 
     return (
