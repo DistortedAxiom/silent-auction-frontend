@@ -19,7 +19,6 @@ function App() {
       <Route path="/signup">
         <SignUp />
       </Route>
-
       <Route path="/sellerform">
         <SellerForm />
       </Route>

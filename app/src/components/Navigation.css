@@ -1,0 +1,20 @@
+.nav-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.home-link-container {
+    padding-right: 20vw;
+}
+
+.home-link {
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.nav-item {
+    text-decoration: none;
+    font-size: 1.5rem;
+}
