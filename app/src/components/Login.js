@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import styled, {css} from 'styled-components';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
@@ -53,13 +53,15 @@ const StyledButton = styled.button`
 `;
 
 
-export default function Login() {
+export default function Login(props) {
 
     const {register, handleSubmit, errors, reset} = useForm();
 
     const [loginError, setLoginError] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
 
     const onSubmit = (data, e) => {
+        e.preventDefault();
         login(data);
         e.target.reset();
     }
@@ -76,15 +78,19 @@ export default function Login() {
             .then(res => {
                 console.log(`Success!`)
                 localStorage.setItem('token', JSON.stringify(res.data.token));
-                console.log(localStorage.token)
+                setLoggedIn(true);
             })
-            .catch(err =>    {
+            .catch(err => {
                 console.log(err);
                 setLoginError('Please check your username and password');
             })
     }
 
-    return (
+        if (localStorage.getItem("token") != null) {
+            return (<Redirect to="profile" />);
+        }
+        else {
+            return (
         <div>
             <h1>Welcome to Auctionable</h1>
             <h2>Login</h2>
@@ -123,5 +129,6 @@ export default function Login() {
                 </div>
             </div>
         </div>
-    )
+            )
+        }
 }

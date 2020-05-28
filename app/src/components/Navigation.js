@@ -9,8 +9,8 @@ export default function Navigation() {
             <div className="home-link-container">
                 <a href='https://auctionable.netlify.app/' className="home-link">Auctionable</a>
             </div>
-            <Link to="/" className="nav-item">Login</Link>
-            <Link to="/signup" className="nav-item">Register</Link>
+            <Link to="/" className="nav-item">Home</Link>
+            <Link to="/signup" className=   "nav-item">Register</Link>
             <Link to="/sellerform" className="nav-item">Sell</Link>
         </nav>
     )
