@@ -17,7 +17,7 @@ export default function ItemList() {
     const [ItemList, setItemList] = useState([]);
 
     useEffect(() => {
-        axios.get('http://demo5031288.mockable.io/api/item')
+        axios.get('https://demo5031288.mockable.io/api/item')
         .then(res => {
             setItemList(res.data.data)
         })
