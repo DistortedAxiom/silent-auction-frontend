@@ -3,3 +3,7 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+.profile-header h2 {
+    font-size: 2rem;
+}

@@ -17,7 +17,7 @@ const Wrapper = styled.div`
     flex: 0 0 25%;
 
     &:hover {
-    opacity: 0.5;
+    opacity: 0.8;
     cursor: pointer;
     }
 `;
@@ -31,6 +31,7 @@ const Title = styled.h3`
 
 const Description = styled.p`
     color: white;
+    font-size: 1.1rem;
 `;
 
 const ItemPost = props => {

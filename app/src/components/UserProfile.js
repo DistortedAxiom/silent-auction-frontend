@@ -8,8 +8,7 @@ export default function UserProfile(props) {
     return (
         <div>
             <div className="profile-header">
-                <h3>Welcome!</h3>
-                <button>Sell an item</button>
+                <h2>Welcome!</h2>
             </div>
             <div>
                 <ItemList />
