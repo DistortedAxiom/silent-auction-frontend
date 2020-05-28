@@ -17,10 +17,10 @@ function App() {
         <Navigation />
       </header>
       <Switch>
-        <Route exact path="/" component={Login} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/sellerform" component={SellerForm} />
-        <PrivateRoute path="/profile" component={UserProfile} />
+        <Route exact path="/" component={Login} title="Home"/>
+        <Route path="/signup" component={SignUp} title="Sign Up"/>
+        <Route path="/sellerform" component={SellerForm} title="Seller Form"/>
+        <PrivateRoute path="/profile" component={UserProfile} title="Dashboard"/>
       </Switch>
     </div>
   );
