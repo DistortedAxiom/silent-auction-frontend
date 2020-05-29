@@ -1,63 +1,24 @@
-import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
-import {useForm} from 'react-hook-form';
-import styled, {css} from 'styled-components';
-import '../App.css';
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { connect } from 'react-redux';
 
-const inputStyle = css`
-  background-color: #eee;
-  height: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  margin: 10px 0 20px 0;
-  padding: 1.3rem;
-  box-sizing: border-box;
-`;
+const Login = props => {
 
-const StyledFormWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 8vh;
-`;
-
-const StyledForm = styled.form`
-  width: 100%;
-  max-width: 700px;
-  padding: 40px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-sizing: border-box;
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
-`;
-
-const StyledInput = styled.input`
-  display: block;
-  width: 100%;
-  ${inputStyle}
-`;
-
-const StyledButton = styled.button`
-    display: block;
-    text-align: center;
-    background-color: #09BD92;
-    color: white;
-    font-size: 1rem;
-    border: 0;
-    border-radius: 5px;
-    height: 40px;
-    padding: 0 20px;
-    cursor: pointer;
-    box-sizing: border-box;
-`;
-
-
-export default function Login() {
-
-    const {register, handleSubmit, errors} = useForm();
+    const { register, handleSubmit, errors } = useForm();
+    const history = useHistory();
 
     const onSubmit = data => {
-        console.log(data);
+        axiosWithAuth()
+			.post('/api/login', data)
+			.then(res => {
+				localStorage.setItem('token', res.data.payload);
+				history.push('/items/list');
+			})
+			.catch((error) => {
+				console.log('Post error ', error);
+      })
     }
 
     return (
@@ -65,35 +26,31 @@ export default function Login() {
             <h1>Welcome to Silent Auction</h1>
             <h2>Login</h2>
             <div>
-                <StyledFormWrapper>
-                <StyledForm onSubmit={handleSubmit(onSubmit)}>
-                    <h3>Username</h3>
-                        <StyledInput
-                            type="text"
-                            placeholder="Username"
-                            name="username"
-                            ref={register({ required: true })}
-                        />
-                        {errors.username && <p>Username is required</p>}
+                <form className="ui form" onSubmit={handleSubmit(onSubmit)}>
+                    <h3>Email</h3>
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        name="email"
+                        ref={register({ required: true })}
+                    />
+                    {errors.username && <p>Must enter an email</p>}
                     <h3>Password</h3>
-                        <StyledInput
-                            type="password"
-                            placeholder="Password"
-                            name="password"
-                            ref={register({ required: true })}
-                        />
-                        {errors.password && <p>Password is required</p>}
-                    <div className="button-container">
-                    <StyledButton type="submit">Submit</StyledButton>
-                    </div>
-                </StyledForm>
-                </StyledFormWrapper>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        ref={register({ required: true })}
+                    />
+                    {errors.password && <p>Must enter a password</p>}
+                        <button className="ui button primary" type="submit">Login</button>
+                </form>
             </div>
             <div>
                 <h3>Don't have an account?</h3>
-                <div className="button-container">
-                    <Link to="/register" style={{textDecoration: 'none'}}>
-                        <StyledButton>Register Now!</StyledButton>
+                <div className="ui container">
+                    <Link className="ui button primary" to="/register" style={{ textDecoration: 'none' }}>
+                        Register
                     </Link>
                 </div>
             </div>
@@ -101,3 +58,5 @@ export default function Login() {
     )
 
 }
+
+export default connect()(Login);

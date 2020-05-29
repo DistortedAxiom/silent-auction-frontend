@@ -1,11 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App'
-import { BrowserRouter as Router } from 'react-router-dom';
+import { combineReducers } from 'redux';
+import itemReducer from './itemReducer';
 
-ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
-  document.getElementById('root')
-);
+export default combineReducers({
+    items: itemReducer
+})
