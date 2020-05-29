@@ -16,6 +16,7 @@ export default (state = {}, action) => {
         case CREATE_ITEM:
             return { ...state, [action.payload.id]: action.payload };
         case EDIT_ITEM: 
+            console.log(state);
             return { ...state, [action.payload.id]: action.payload };
         case DELETE_ITEM:
             return _.omit(state, action.payload);

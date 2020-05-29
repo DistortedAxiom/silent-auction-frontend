@@ -33,7 +33,7 @@ export const fetchItem = id => async dispatch => {
 
 export const editItem = (id, data) => async dispatch => {
 
-    const response = items.put(`/items/${id}`, data);
+    const response = await items.put(`/items/${id}`, data);
 
     dispatch({ type: EDIT_ITEM, payload: response.data })
     history.push('/items/list')
