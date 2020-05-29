@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import styled, {css} from 'styled-components';
 import axios from 'axios';
@@ -57,15 +57,25 @@ export default function SignUp() {
     const formValue = { username: '', email: '', password: '' }
 
     const {register, handleSubmit, errors} = useForm();
+    const [loginError, setLoginError] = useState('');
+    const [success, setSuccess] = useState(false);
     const [user, setUser] = useState(formValue);
+
+    /*
+            TEST AUTHENTICATION REGISTRATION
+               "email": "eve.holt@reqres.in",
+               "password": "pistol"
+    */
 
     const registerUser = (newUser) => {
         axios.post('https://reqres.in/api/register', newUser)
             .then(res => {
-                console.log(res)
+                localStorage.setItem('token', JSON.stringify(res.data.token));
+                setSuccess(true);
             })
             .catch(err => {
                 console.log(err)
+                setLoginError('Please check your email and password');
             })
     }
 
@@ -78,8 +88,14 @@ export default function SignUp() {
         }
 
         registerUser(newUser);
-
+        setUser(formValue);
     }
+
+    if (success == true) {
+        return (<Redirect to="profile" />);
+    }
+
+    else {
 
     return (
         <div>
@@ -88,6 +104,7 @@ export default function SignUp() {
             <div>
                 <StyledFormWrapper>
                 <StyledForm onSubmit={handleSubmit(onSubmit)}>
+                {loginError.length > 0 ? <p className="login-error">{loginError}</p> : null}
                     <h3>Username</h3>
                         <StyledInput
                             type="text"
@@ -120,4 +137,5 @@ export default function SignUp() {
             </div>
         </div>
     )
+    }
 }

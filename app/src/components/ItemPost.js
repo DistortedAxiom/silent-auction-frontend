@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useRouteMatch, Route } from 'react-router-dom'
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -34,12 +35,18 @@ const Description = styled.p`
     font-size: 1.1rem;
 `;
 
+
 const ItemPost = props => {
+
+    const passedProp = props
 
     return (
         <Wrapper>
-            <Title>{props.data.name}</Title>
-            <Description>{props.data.description}</Description>
+            <Link to={{pathname: `/items/${props.data.id}`, data: passedProp}}
+            style={{textDecoration: 'none'}}>
+                <Title>{props.data.name}</Title>
+                <Description>{props.data.description}</Description>
+            </Link>
         </Wrapper>
     )
 }
