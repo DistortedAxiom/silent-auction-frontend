@@ -1,0 +1,9 @@
+{
+  "items": [
+    {
+      "name": "Cake",
+      "description": "Has icing.",
+      "id": 1
+    }
+  ]
+}
